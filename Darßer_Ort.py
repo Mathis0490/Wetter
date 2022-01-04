@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 import time
+from sqlalchemy import create_engine
 
 URL = 'https://www.wetter.com/wetter_aktuell/wettervorhersage/16_tagesvorhersage/deutschland/born-a-darss/darsser-ort/DE2938883.html#liste' #url des ortes zum auslesen
 get = requests.get(URL).text
@@ -42,18 +43,13 @@ wetter.columns = ['datum', 'temperatur', 'sonne', 'niederschlag', 'tage'] #wette
 wetter['niederschlag'] = wetter['niederschlag'].replace(r'\s+|\\n', ' ', regex=True) #setzt die {n weg was die sache echt vereinfacht }
 wetter['temperatur'] = wetter['temperatur'].replace(r'\s+|\\n', ' ', regex=True) 
 
-import pandas as pd
-from sqlalchemy import create_engine
-
 # Credentials to database connection
 hostname="localhost"
 dbname="mathis"
 uname="root"
 pwd="**"
 
-# Create dataframe
 
-# Create SQLAlchemy engine to connect to MySQL Database
 engine = create_engine("mysql+pymysql://{user}:{pw}@{host}/{db}"
 				.format(host=hostname, db=dbname, user=uname, pw=pwd))
 
