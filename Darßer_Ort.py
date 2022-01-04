@@ -49,7 +49,7 @@ from sqlalchemy import create_engine
 hostname="localhost"
 dbname="mathis"
 uname="root"
-pwd="Butch1304?!"
+pwd="**"
 
 # Create dataframe
 
